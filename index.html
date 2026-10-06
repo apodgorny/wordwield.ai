@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='WordWield.ai — Almasi: Python runtimes, persistent object models, and infrastructure for applications and AI agents. Designed by Alexander Podgorny.'>
+	<meta name='theme-color' content='#101713'>
+	<meta property='og:title' content='WordWield.ai — A common foundation for apps & agents'>
+	<meta property='og:description' content='Explore the Almasi AI Stack: filesystem-native runtimes and a shared persistent world of Python objects.'>
+	<title>WordWield.ai — Apps & agents, on common ground</title>
+	<style>
+		:root { color-scheme: dark; --bg: #101713; --panel: #18211b; --ink: #f2f1e8; --muted: #a9b4aa; --accent: #d2e58d; --line: #344237; }
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; }
+		a { color: inherit; text-decoration: none; }
+		a:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+		.wrap { width: min(1160px, calc(100% - 80px)); margin: auto; }
+		header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--line); gap: 24px; }
+		.brand { font-weight: 650; font-size: 22px; letter-spacing: -.8px; }
+		.brand span { color: var(--accent); }
+		nav { display: flex; gap: 30px; font-size: 13px; color: var(--muted); }
+		nav a:hover, .text-link:hover { color: var(--accent); }
+		.hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 70px; padding: 95px 0 75px; align-items: center; }
+		.eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin: 0 0 26px; }
+		h1 { font-size: clamp(44px, 5.3vw, 70px); line-height: 1.06; font-weight: 500; letter-spacing: -3px; margin: 0 0 26px; }
+		h1 em { font-family: Georgia, serif; font-weight: 400; color: var(--accent); }
+		.intro { max-width: 490px; color: var(--muted); font-size: 17px; }
+		.actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+		.button { display: inline-flex; align-items: center; gap: 24px; padding: 12px 20px; background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 600; border: 1px solid var(--accent); border-radius: 4px; }
+		.button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+		.button:hover { transform: translateY(-2px); }
+		.world { position: relative; border: 1px solid var(--line); border-radius: 8px; padding: 26px; background: radial-gradient(ellipse at 50% 45%, #273825 0, var(--panel) 65%); }
+		.world-top { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; }
+		.world-top span:last-child { color: var(--accent); }
+		.world svg { width: 100%; height: auto; display: block; margin: 28px 0 12px; }
+		.world-foot { border-top: 1px solid var(--line); padding-top: 16px; font-family: monospace; font-size: 12px; color: var(--muted); }
+		.principle { padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 13px; }
+		.principle strong { font-weight: 400; color: var(--ink); }
+		section { padding: 72px 0; }
+		.section-title { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 32px; }
+		h2 { font-size: 35px; line-height: 1.2; font-weight: 450; letter-spacing: -1px; margin: 0; }
+		.section-title p { max-width: 430px; margin: 0; color: var(--muted); font-size: 14px; }
+		.cards { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+		.card { padding: 30px; background: var(--panel); display: flex; flex-direction: column; }
+		.card + .card { border-left: 1px solid var(--line); }
+		.card-label { display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; }
+		.card-label span:last-child { color: var(--accent); }
+		h3 { font-size: 32px; font-weight: 450; letter-spacing: -1px; margin: 30px 0 8px; }
+		.card h4 { font-size: 15px; font-weight: 500; margin: 0 0 12px; }
+		.card p { color: var(--muted); font-size: 14px; margin: 0 0 25px; }
+		.card-links { margin-top: auto; display: flex; gap: 22px; font-size: 12px; color: var(--accent); }
+		.card-links a:hover { text-decoration: underline; }
+		.watch { padding-top: 0; }
+		.videos { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+		.video { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--panel); }
+		.video-cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #25352a; }
+		.video-cover img { width: 100%; height: 100%; object-fit: cover; opacity: .78; transition: opacity .2s, transform .2s; }
+		.video:hover img { opacity: 1; transform: scale(1.02); }
+		.play { position: absolute; inset: 0; display: grid; place-items: center; }
+		.play span { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--accent); color: var(--bg); font-size: 18px; padding-left: 3px; }
+		.video-caption { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+		.video-caption strong { font-size: 15px; font-weight: 500; display: block; }
+		.video-caption small { font-size: 12px; color: var(--muted); }
+		.video-caption b { color: var(--accent); font-weight: 400; }
+		.about { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; border-top: 1px solid var(--line); }
+		.about p { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+		.about strong { color: var(--ink); font-weight: 500; }
+		.about .text-link { font-size: 13px; color: var(--accent); }
+		.contact { padding: 40px; border: 1px solid var(--line); background: var(--accent); color: var(--bg); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+		.contact h2 { font-size: 30px; }
+		.contact p { margin: 10px 0 0; font-size: 14px; max-width: 650px; }
+		.contact .button { background: var(--bg); color: var(--ink); border-color: var(--bg); white-space: nowrap; }
+		footer { padding: 30px 0; display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 11px; }
+		.skip { position: absolute; top: -100px; left: 20px; padding: 12px; background: var(--accent); color: var(--bg); z-index: 10; }
+		.skip:focus { top: 10px; }
+		@media (max-width: 850px) { .wrap { width: calc(100% - 40px); } .hero { grid-template-columns: 1fr; gap: 35px; padding: 55px 0; } .world { max-width: 520px; } .cards { grid-template-columns: 1fr; } .card + .card { border-left: 0; border-top: 1px solid var(--line); } .section-title, .contact { align-items: start; flex-direction: column; } .about { grid-template-columns: 1fr; gap: 28px; } .principle { flex-wrap: wrap; } }
+		@media (max-width: 520px) { header { align-items: start; } nav { gap: 15px; flex-wrap: wrap; justify-content: end; } h1 { letter-spacing: -2px; } .videos { grid-template-columns: 1fr; } .contact { padding: 26px; } section { padding: 48px 0; } footer { flex-direction: column; gap: 8px; } }
+		@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .video-cover img { transition: none; } .button:hover, .video:hover img { transform: none; } }
+	</style>
+</head>
+<body>
+	<a class='skip' href='#main'>Skip to content</a>
+	<div class='wrap'>
+		<header>
+			<a class='brand' href='#' aria-label='WordWield.ai home'>WordWield<span>.ai</span></a>
+			<nav aria-label='Main navigation'><a href='#stack'>The stack</a><a href='#walkthroughs'>Walkthroughs</a><a href='#contact'>Get in touch ↗</a></nav>
+		</header>
+		<main id='main'>
+			<div class='hero'>
+				<div>
+					<p class='eyebrow'>Independent systems research · Built in Python</p>
+					<h1>Apps &amp; agents.<br>On <em>common<br>ground.</em></h1>
+					<p class='intro'>Explore the Almasi AI Stack: a filesystem-native runtime and a shared, persistent world of Python objects for applications and AI agents.</p>
+					<div class='actions'><a class='button' href='#stack'>Explore the stack <span aria-hidden='true'>↓</span></a><a class='button secondary' href='https://youtu.be/M8GxATOocD0' target='_blank' rel='noopener noreferrer'>Watch the architecture <span aria-hidden='true'>↗</span></a></div>
+				</div>
+				<div class='world'>
+					<div class='world-top'><span>The architectural idea</span><span>Shared state</span></div>
+					<svg viewBox='0 0 400 285' role='img' aria-labelledby='world-title world-description'>
+						<title id='world-title'>Applications and agents share a persistent object model</title><desc id='world-description'>An application and an AI agent connect to the same world of Python objects. That world is built on the Almasi runtime.</desc>
+						<g fill='none' stroke='#69805b' stroke-width='1.5'><path d='M95 57V102L175 144M305 57V102L225 144'/><path d='M200 180V229'/></g>
+						<g fill='#18211b' stroke='#586b4c'><rect x='28' y='15' width='135' height='52' rx='5'/><rect x='237' y='15' width='135' height='52' rx='5'/><rect x='51' y='117' width='298' height='80' rx='7'/><rect x='78' y='230' width='244' height='40' rx='5'/></g>
+						<g fill='#f2f1e8' font-family='Arial, sans-serif' text-anchor='middle'><text x='95' y='46' font-size='14'>Application</text><text x='305' y='46' font-size='14'>AI agent</text><text x='200' y='151' font-size='17' fill='#d2e58d'>One persistent object world</text><text x='200' y='177' font-size='11' fill='#a9b4aa'>Identity · Structure · Relationships · State</text><text x='200' y='255' font-size='12'>Almasi · Filesystem-native runtime</text></g>
+					</svg>
+					<div class='world-foot'>Python objects as a common foundation.</div>
+				</div>
+			</div>
+			<div class='principle'><strong>One object model. Fewer boundaries to translate.</strong><span>Runtime structure → Persistent objects → Agent workflows</span></div>
+			<section id='stack' aria-labelledby='stack-title'>
+				<div class='section-title'><div><p class='eyebrow'>Three layers, one direction</p><h2 id='stack-title'>Meet the Almasi stack.</h2></div><p>Each layer builds on the one beneath it, bringing code structure, application state, and agent execution closer together.</p></div>
+				<div class='cards'>
+					<article class='card'><div class='card-label'><span>01 / Runtime</span><span>Public source</span></div><h3>Almasi</h3><h4>Your filesystem becomes your runtime.</h4><p>A Python runtime that resolves library components directly from filesystem structure. Compose and extend libraries through ordinary Python classes, inheritance, and plugins.</p><div class='card-links'><a href='https://github.com/apodgorny/almasi' target='_blank' rel='noopener noreferrer'>Explore code ↗</a><a href='https://www.youtube.com/watch?v=eCk6kiAriR0' target='_blank' rel='noopener noreferrer'>Watch overview ↗</a></div></article>
+					<article class='card'><div class='card-label'><span>02 / Object world</span><span>Public source</span></div><h3>Almasi.o</h3><h4>Persistent Python objects, shared.</h4><p>A persistent object model unifying identity, relationships, validation, schema, and state. Applications and agents work with the same entities, with fewer representations to synchronize.</p><div class='card-links'><a href='https://github.com/apodgorny/o' target='_blank' rel='noopener noreferrer'>Explore code ↗</a><a href='https://youtu.be/M8GxATOocD0' target='_blank' rel='noopener noreferrer'>Watch overview ↗</a></div></article>
+					<article class='card'><div class='card-label'><span>03 / Execution</span><span>In development</span></div><h3>Almasi.do</h3><h4>Agent workflows on persistent state.</h4><p>The next layer of the stack explores agentic workflows on top of Almasi.o: connecting structured intent, context, and execution within a shared object world.</p><div class='card-links'><a href='#contact'>Discuss the direction ↗</a></div></article>
+				</div>
+			</section>
+			<section class='watch' id='walkthroughs' aria-labelledby='watch-title'>
+				<div class='section-title'><div><p class='eyebrow'>See how it fits together</p><h2 id='watch-title'>Architecture, explained.</h2></div><p>Two technical walkthroughs, straight from the creator.</p></div>
+				<div class='videos'>
+					<a class='video' href='https://www.youtube.com/watch?v=eCk6kiAriR0' target='_blank' rel='noopener noreferrer' aria-label='Watch Almasi runtime architecture on YouTube'><div class='video-cover'><img src='https://i.ytimg.com/vi/eCk6kiAriR0/hqdefault.jpg' alt='' loading='lazy' width='480' height='360'><div class='play' aria-hidden='true'><span>▶</span></div></div><div class='video-caption'><div><strong>Almasi · Runtime architecture</strong><small>Filesystem structure becomes runtime structure</small></div><b aria-hidden='true'>↗</b></div></a>
+					<a class='video' href='https://youtu.be/M8GxATOocD0' target='_blank' rel='noopener noreferrer' aria-label='Watch Almasi.o persistent object model on YouTube'><div class='video-cover'><img src='https://i.ytimg.com/vi/M8GxATOocD0/hqdefault.jpg' alt='' loading='lazy' width='480' height='360'><div class='play' aria-hidden='true'><span>▶</span></div></div><div class='video-caption'><div><strong>Almasi.o · Persistent object world</strong><small>A shared foundation for applications and agents</small></div><b aria-hidden='true'>↗</b></div></a>
+				</div>
+			</section>
+			<section class='about' aria-labelledby='about-title'><div><p class='eyebrow'>Designed &amp; built by</p><h2 id='about-title'>Alexander Podgorny</h2></div><div><p><strong>AI systems architect. 25+ years in software.</strong><br>Experience at Google, PayPal, Mozilla, Yahoo, HP, and LG/webOS, spanning hands-on engineering, framework design, and technical leadership.</p><p>WordWield.ai is my independent research and development initiative. I designed and implemented the Almasi stack to explore a common foundation for applications and agents — with a natural potential fit for web applications, too.</p><a class='text-link' href='https://www.linkedin.com/in/podgorny/' target='_blank' rel='noopener noreferrer'>Meet the architect on LinkedIn ↗</a></div></section>
+			<div class='contact' id='contact'><div><h2>Building in the same direction?</h2><p>Let’s talk about AI infrastructure, persistent runtimes, architecture, or opportunities to build these systems with a team.</p></div><a class='button' href='https://www.linkedin.com/in/podgorny/' target='_blank' rel='noopener noreferrer'>Connect with Alexander ↗</a></div>
+		</main>
+		<footer><span>© 2026 WordWield.ai · Alexander Podgorny</span><span>Independent research. Public architecture. Built in Python.</span></footer>
+	</div>
+</body>
+</html>
