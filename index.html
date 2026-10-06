@@ -4,12 +4,12 @@
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<meta name='description' content='WordWield.ai — Almasi: Python runtimes, persistent object models, and infrastructure for applications and AI agents. Designed by Alexander Podgorny.'>
-	<meta name='theme-color' content='#101713'>
+	<meta name='theme-color' content='#090909'>
 	<meta property='og:title' content='WordWield.ai — A common foundation for apps & agents'>
 	<meta property='og:description' content='Explore the Almasi AI Stack: filesystem-native runtimes and a shared persistent world of Python objects.'>
 	<title>WordWield.ai — Apps & agents, on common ground</title>
 	<style>
-		:root { color-scheme: dark; --bg: #101713; --panel: #18211b; --ink: #f2f1e8; --muted: #a9b4aa; --accent: #d2e58d; --line: #344237; }
+		:root { color-scheme: dark; --bg: #090909; --panel: #141414; --ink: #f5f4ef; --muted: #b1afab; --accent: #ffda70; --line: #353333; --red: #ff321d; --violet: #b94aff; }
 		* { box-sizing: border-box; }
 		html { scroll-behavior: smooth; }
 		body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; }
@@ -22,6 +22,7 @@
 		nav { display: flex; gap: 30px; font-size: 13px; color: var(--muted); }
 		nav a:hover, .text-link:hover { color: var(--accent); }
 		.hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 70px; padding: 95px 0 75px; align-items: center; }
+		.hero > div:first-child { border-left: 3px solid var(--red); padding-left: 24px; }
 		.eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin: 0 0 26px; }
 		h1 { font-size: clamp(44px, 5.3vw, 70px); line-height: 1.06; font-weight: 500; letter-spacing: -3px; margin: 0 0 26px; }
 		h1 em { font-family: Georgia, serif; font-weight: 400; color: var(--accent); }
@@ -30,7 +31,7 @@
 		.button { display: inline-flex; align-items: center; gap: 24px; padding: 12px 20px; background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 600; border: 1px solid var(--accent); border-radius: 4px; }
 		.button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
 		.button:hover { transform: translateY(-2px); }
-		.world { position: relative; border: 1px solid var(--line); border-radius: 8px; padding: 26px; background: radial-gradient(ellipse at 50% 45%, #273825 0, var(--panel) 65%); }
+		.world { position: relative; border: 1px solid var(--line); border-radius: 8px; padding: 26px; background: radial-gradient(ellipse at 50% 45%, #27221b 0, var(--panel) 65%); }
 		.world-top { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; }
 		.world-top span:last-child { color: var(--accent); }
 		.world svg { width: 100%; height: auto; display: block; margin: 28px 0 12px; }
@@ -43,6 +44,9 @@
 		.section-title p { max-width: 430px; margin: 0; color: var(--muted); font-size: 14px; }
 		.cards { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
 		.card { padding: 30px; background: var(--panel); display: flex; flex-direction: column; }
+		.card:nth-child(2) { box-shadow: inset 0 2px var(--violet); }
+		.card:nth-child(3) { box-shadow: inset 0 2px var(--red); }
+		.card:first-child { box-shadow: inset 0 2px var(--accent); }
 		.card + .card { border-left: 1px solid var(--line); }
 		.card-label { display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; }
 		.card-label span:last-child { color: var(--accent); }
@@ -54,7 +58,7 @@
 		.watch { padding-top: 0; }
 		.videos { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
 		.video { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--panel); }
-		.video-cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #25352a; }
+		.video-cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #201d18; }
 		.video-cover img { width: 100%; height: 100%; object-fit: cover; opacity: .78; transition: opacity .2s, transform .2s; }
 		.video:hover img { opacity: 1; transform: scale(1.02); }
 		.play { position: absolute; inset: 0; display: grid; place-items: center; }
@@ -98,9 +102,9 @@
 					<div class='world-top'><span>The architectural idea</span><span>Shared state</span></div>
 					<svg viewBox='0 0 400 285' role='img' aria-labelledby='world-title world-description'>
 						<title id='world-title'>Applications and agents share a persistent object model</title><desc id='world-description'>An application and an AI agent connect to the same world of Python objects. That world is built on the Almasi runtime.</desc>
-						<g fill='none' stroke='#69805b' stroke-width='1.5'><path d='M95 57V102L175 144M305 57V102L225 144'/><path d='M200 180V229'/></g>
-						<g fill='#18211b' stroke='#586b4c'><rect x='28' y='15' width='135' height='52' rx='5'/><rect x='237' y='15' width='135' height='52' rx='5'/><rect x='51' y='117' width='298' height='80' rx='7'/><rect x='78' y='230' width='244' height='40' rx='5'/></g>
-						<g fill='#f2f1e8' font-family='Arial, sans-serif' text-anchor='middle'><text x='95' y='46' font-size='14'>Application</text><text x='305' y='46' font-size='14'>AI agent</text><text x='200' y='151' font-size='17' fill='#d2e58d'>One persistent object world</text><text x='200' y='177' font-size='11' fill='#a9b4aa'>Identity · Structure · Relationships · State</text><text x='200' y='255' font-size='12'>Almasi · Filesystem-native runtime</text></g>
+						<g fill='none' stroke='#a68b50' stroke-width='1.5'><path d='M95 57V102L175 144M305 57V102L225 144'/><path d='M200 180V229'/></g>
+						<g fill='#141414' stroke='#665b43'><rect x='28' y='15' width='135' height='52' rx='5'/><rect x='237' y='15' width='135' height='52' rx='5'/><rect x='51' y='117' width='298' height='80' rx='7'/><rect x='78' y='230' width='244' height='40' rx='5'/></g>
+						<g fill='#f5f4ef' font-family='Arial, sans-serif' text-anchor='middle'><text x='95' y='46' font-size='14'>Application</text><text x='305' y='46' font-size='14'>AI agent</text><text x='200' y='151' font-size='17' fill='#ffda70'>One persistent object world</text><text x='200' y='177' font-size='11' fill='#b1afab'>Identity · Structure · Relationships · State</text><text x='200' y='255' font-size='12'>Almasi · Filesystem-native runtime</text></g>
 					</svg>
 					<div class='world-foot'>Python objects as a common foundation.</div>
 				</div>
